@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sarius AI Chatbot ver-Alpha</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@32,400,0,0" />
+    <link rel="stylesheet" href="sarius_style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+      window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        }
+      };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <div class="header">
+      <p id="title">Sarius AI chatbot: made by Gio Bacus</p>
+    </div>
+    
+    <div class="container">
+      <div class="introduction">
+        <h1 id="greet">Hello there!</h1>
+        <h2 id="greet2nd">How can I help?</h2>
+      </div>
+      <!-- convos... -->
+      <div class="chats-container"></div>
+    </div>
+    
+    <!-- user's prompt tools -->
+    <div class="prompt-container">
+      <div class="prompt-tools">
+    	  <input type="text" placeholder="Ask Sarius" class="text-box" required />
+    	  <input type="file" id="file-input" accept="image/*" hidden />
+    	  <button id="add-file-btn" class="material-symbols-rounded">image</button>
+      	<button id="send-prompt-btn" class="material-symbols-rounded">arrow_upward</button>
+        <button id="delete-chats-btn" class="material-symbols-rounded">delete</button>
+      </div>
+      <p id="note">Navigating the digital cosmos. Sarius might glitch in the nebula—use with care.</p>
+    </div>
+    	
+    <script src="sarius_script.js"></script>
+</body>
+</html>
