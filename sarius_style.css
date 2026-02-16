@@ -1,0 +1,156 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Occupy 100% of the viewport height */
+  overflow: hidden; /* Prevent the whole page from scrolling */
+  background-color: #f3f7ff;
+}
+
+.header {
+  flex-shrink: 0;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  box-shadow: 0 10px 15px -10px rgba(0, 0, 0, 0.2);
+}
+
+#title {
+  font-family: "Poppins", "Sans-Serif";
+}
+
+#greet {
+  font-family: "Poppins", "Sans-Serif";
+  margin: 0px;
+  font-size: 45px;
+  background: linear-gradient(90deg, #4D5DFB, #9D50BB);
+  /* Clip the background so it only stays inside the letters */
+  -webkit-background-clip: text;
+  background-clip: text;
+  /* Make the actual text color transparent so the background shows through */
+  color: transparent;
+}
+
+#greet2nd {
+  font-family: "Poppins", "Sans-Serif";
+  margin: 0px;
+  font-size: 45px;
+  color: #7b8cae;
+}
+
+.container {
+  flex-grow: 1; /* Take up all remaining vertical space */
+  overflow-y: auto; /* Show scrollbar only when content overflows */
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  align-items: center;    /* This centers the introduction box horizontally */
+  justify-content: flex-start; /* This centers the introduction box vertically */
+}
+
+.chats-container {
+  /* This will now scroll inside the parent .container */
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 800px; /* Keep it centered and readable */
+  margin: 0 auto;
+}
+
+.user-msg {
+  width: fit-content; 
+  max-width: 80%; 
+  padding: 12px 16px;
+  margin: 8px 0;
+  background-color: lavender;
+  border-radius: 20px 0px 20px 20px; /* top left, top right, bottom right, bottom left */
+  align-self: flex-end;
+  justify-content: flex-start;
+}
+
+.prompt-container {
+  flex-shrink: 0; /* Keep its size consistent */
+  padding: 20px;
+  width: 100%;
+  height: 22%;
+  box-sizing: border-box;
+  /* Offset-x | Offset-y | Blur-radius | Spread-radius | Color */
+  box-shadow: 0 -10px 15px -10px #4D5DFB;
+  border-radius: 30px;
+}
+
+.prompt-tools {
+  display: flex;
+  justify-content: center; /* Horizontal center */
+  align-content: center; /* Vertical center */
+}
+
+.text-box {
+  /* For mobile */
+  width: 70%;           /* Looks short or normal on phone */
+  max-width: 300px;     /* Prevents it from getting too chunky */
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid #dce6f9;
+  outline: none;
+  background-color: #dce6f9;
+}
+
+/* For desktops (Screens wider than 768px) */
+@media (min-width: 768px) {
+  .text-box {
+    width: 100%;        /* Stretches out when there's room */
+    max-width: 600px;   /* But still has a limit so it doesn't look crazy */
+  }
+}
+
+#add-file-btn {
+  padding: 10px;
+  border-radius: 25px;
+  border: 1px solid #dce6f9;
+  outline: none;
+  background-color: #dce6f9;
+  margin: 2px;
+}
+
+#send-prompt-btn {
+  padding: 10px;
+  border-radius: 25px;
+  border: 1px solid #007BFF;
+  outline: none;
+  background-color: #007BFF;
+  color: #dce6f9;
+  margin: 2px;
+}
+
+#delete-chats-btn {
+  padding: 10px;
+  border-radius: 25px;
+  border: 1px solid red;
+  outline: none;
+  background-color: red;
+  color: #dce6f9;
+  margin: 2px;
+}
+
+#note {
+  font-family: "Poppins", "Sans-Serif";
+  text-align: center;
+  font-size: 0.7rem;
+  margin-bottom: 10px;
+  color: #7b8cae;
+}
+
+p {
+  font-family: "Sans-Serif";
+}
+
+.introduction {
+  padding: 20px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
