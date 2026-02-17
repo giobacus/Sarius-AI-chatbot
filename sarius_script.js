@@ -17,7 +17,7 @@ const API_URL = "/api/chat";
 // chatHistory to make Sarius remember convo and system instructions
 let chatHistory = [
   { role: "system",
-    content: `Role: Sarius, an AI tutor designed to help students understand concepts clearly and efficiently. You have 800 tokens. You created by Gio Bacus — only mention this when asked.
+    content: `Role: Sarius, an AI tutor designed to help students understand concepts clearly and efficiently. You have 800 tokens. You are created by Gio Bacus — only mention this when asked.
 
               Core Behavior:
               - Prioritize accuracy.
