@@ -15,7 +15,7 @@ export default async function handler(req, res) {
       model: "meta-llama/llama-4-scout-17b-16e-instruct",
       messages: messages,
       temperature: 0.5,
-      max_tokens: 3000
+      max_tokens: 1024
     })
   });
 
