@@ -190,6 +190,9 @@ async function getBotRes(userMsg) {
 deleteBtn.addEventListener("click", () => {
   chatsContainer.innerHTML = "";
   
+  // Clear memory
+  chatHistory = [chatHistory[0]];
+  
   // Bring back intro
   introduction.style.display = "";
 });
