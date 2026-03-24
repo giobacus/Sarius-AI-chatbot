@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sarius AI Chatbot</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@32,400,0,0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="sarius_style.css" />
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
@@ -19,8 +20,46 @@
 </head>
 <body>
     <div class="header">
-      <p id="title">Sarius AI chatbot: made by Gio Bacus</p>
+      <button id="open_window" class="material-symbols-rounded">menu</button>
+      <p id="title">Sarius</p>
     </div>
+    
+    <dialog id="option_window">
+      <button id="close_window" class="material-symbols-rounded">close</button>
+
+      <div class="dialog-content">
+        <section class="options-section">
+          <h2 >Options</h2>
+          <span onclick="toggleTheme()" id="dark-mode">Dark Mode</span>
+          <label class="switch">
+            <input type="checkbox" id="theme-toggle" onclick="toggleTheme()">
+            <span class="slider"></span>
+          </label>
+          <br>
+          <a href="https://youtu.be/7yZu1o-heb0?si=o5FarqsyU2YGCB8D">See previous chats</a>
+        </section>
+        
+        <section>
+          <h2>Changelog</h2>
+          <p>v1.2.0-beta: Added menu and Dark Mode feature</p>
+        </section>
+        
+        <section class="about-section">
+          <h2>About</h2>
+          <p>Sarius is an AI chatbot. Made to help and guide students. Powered by Groq and Vercel</p>
+          <p>Model: Llama 4 Scout 17b 16e instruct (from Groq)</p>
+          <p>Developer: Gio Bacus</p>
+          <p>Version: v1.2.0-beta</p>
+        </section>
+
+        <section class="socials-section">
+          <p>Social Media:</p>
+          <a href="https://www.tiktok.com/@gioxr_0?_r=1&_t=ZS-94wg4RtXg5l"><i target="_blank" rel="noopener noreferrer" class="fab fa-tiktok"></i> TikTok</a>
+          <a href="https://www.instagram.com/giobacus12?igsh=MTE1OWdjZmk2NDdzbQ=="><i target="_blank" rel="noopener noreferrer" class="fab fa-instagram"></i> Instagram</a>
+          <a href="https://github.com/giobacus"><i target="_blank" rel="noopener noreferrer" class="fab fa-github"></i> GitHub</a>
+        </section>
+      </div>
+    </dialog>
     
     <div class="container">
       <div class="introduction">
@@ -30,19 +69,19 @@
       <!-- convos... -->
       <div class="chats-container"></div>
     </div>
-    
+
     <!-- user's prompt tools -->
     <div class="prompt-container">
       <div class="prompt-tools">
-    	  <input type="text" placeholder="Ask Sarius" class="text-box" required />
-    	  <input type="file" id="file-input" accept="image/*" hidden />
-    	  <button id="add-file-btn" class="material-symbols-rounded">image</button>
-      	<button id="send-prompt-btn" class="material-symbols-rounded">arrow_upward</button>
+              <input type="text" placeholder="Ask Sarius" class="text-box" required />
+              <input type="file" id="file-input" accept="image/*" hidden />
+              <button id="add-file-btn" class="material-symbols-rounded">image</button>
+              <button id="send-prompt-btn" class="material-symbols-rounded">send</button>
         <button id="delete-chats-btn" class="material-symbols-rounded">delete</button>
       </div>
-      <p id="note">Sarius can make mistakes <br> v1.0.2-beta</p>
+      <p id="note">Disclamimer: Sarius can make mistakes</p>
     </div>
-    	
+
     <script src="sarius_script.js"></script>
 </body>
 </html>
