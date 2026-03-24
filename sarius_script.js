@@ -10,6 +10,9 @@ const promptForm = document.querySelector(".prompt-form");
 const userInput = document.querySelector(".text-box");
 const sendBtn = document.getElementById("send-prompt-btn");
 const deleteBtn = document.getElementById("delete-chats-btn");
+const openWin = document.getElementById("open_window");
+const optWin = document.getElementById("option_window");
+const closeWin = document.getElementById("close_window");
 
 // Some API setup
 const API_URL = "/api/chat";
@@ -46,6 +49,26 @@ let chatHistory = [
               - Use LaTeX for math.` }
 ];
 
+// Option window
+openWin.addEventListener("click", () => {
+  optWin.showModal();
+});
+
+closeWin.addEventListener("click", () => {
+  optWin.classList.add("window-closing");
+
+  // wait
+  setTimeout(() => {
+    optWin.close(); // close
+    optWin.classList.remove("window-closing"); // IMPORTANT, it clears state
+  }, 300);
+});
+
+// Toggle Dark Mode
+function toggleTheme() {
+  document.body.classList.toggle("dark-mode");
+}
+
 // Add user's reply to chat window
 sendBtn.addEventListener("click", async () => {
   const userMsg = userInput.value;
@@ -54,17 +77,17 @@ sendBtn.addEventListener("click", async () => {
     userMsgElement.classList.add("user-msg");
     userMsgElement.textContent = userMsg;
     chatsContainer.appendChild(userMsgElement);
-    
+
     // Clear input after send
     userInput.value = "";
-    
+
     //remove introduction
     introduction.style.display = "none";
-    
+
     const botResElement = document.createElement("p");
     botResElement.classList.add("bot-msg");
     chatsContainer.appendChild(botResElement);
-    
+
     // Moving dots because its cool
     let dotCount = 0;
     const maxDots = 3;
@@ -72,20 +95,20 @@ sendBtn.addEventListener("click", async () => {
         dotCount = (dotCount + 1) % (maxDots + 1); // cycles 0 → 1 → 2 → 3 → 0
         botResElement.innerHTML = "Thinking" + ".".repeat(dotCount);
     }, 350);
-    
+
     // Randomized bot thinking time
     await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 4000));
-    
+
     // Stop dot animation
     clearInterval(typingDotsInterval);
-    
+
     // Get response
     const botRes = await getBotRes(userMsg);
-    
+
     // Put the full HTML in the element then fade in
     botResElement.innerHTML = botRes;
     botResElement.style.opacity = "0"; 
-    
+
     let opacity = 0;
     const fadeIn = setInterval(() => {
       if (opacity < 1) {
@@ -95,7 +118,7 @@ sendBtn.addEventListener("click", async () => {
         clearInterval(fadeIn);
       }
     }, 50);
-    
+
     // Activate MathJax
     if (window.MathJax) {
       MathJax.typesetPromise([botResElement]);
@@ -126,11 +149,11 @@ fileInput.addEventListener("change", () => {
 async function getBotRes(userMsg) {
   const errorText = document.createElement("p");
   errorText.classList.add("err-msg");
-  
+
   try {
   // Build the content array (Text + Image if exists)
   let content = [{ type: "text", text: userMsg }];
-  
+
   if (selectedImage) {
     content.push({
       type: "image_url",
@@ -139,7 +162,7 @@ async function getBotRes(userMsg) {
   }
 
   chatHistory.push({ role: "user", content: content });
-  
+
   // keep system intructions and past convos and only save 15 to save quota
     if (chatHistory.length > 16) { 
       // We say 16 because index 0 is system instruct, then we want 15 more.
@@ -148,7 +171,7 @@ async function getBotRes(userMsg) {
         ...chatHistory.slice(-15) // Grab only the 15 most recent messages
       ];
     }
-  
+
   const response = await fetch(API_URL, {
     method: "POST",
     headers: {
@@ -158,15 +181,15 @@ async function getBotRes(userMsg) {
       messages: chatHistory
     })
   });
-  
+
   const data = await response.json();
-  
+
   // check
   if (data && data.choices && data.choices.length > 0) {
     const rawText = data.choices[0].message.content;
 
     const cleanHTML = marked.parse(rawText);
-  
+
     chatHistory.push({ role: "assistant", content: rawText });
     selectedImage = null; // Clear image after sending
     addFileBtn.style.color = ""; // Reset button color
@@ -189,10 +212,10 @@ async function getBotRes(userMsg) {
 //clears chats from chat window
 deleteBtn.addEventListener("click", () => {
   chatsContainer.innerHTML = "";
-  
+
   // Clear memory
   chatHistory = [chatHistory[0]];
-  
+
   // Bring back intro
   introduction.style.display = "";
 });
